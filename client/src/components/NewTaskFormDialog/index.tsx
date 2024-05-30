@@ -1,8 +1,9 @@
+import { assignInlineVars } from "@vanilla-extract/dynamic";
 import type { FC, RefObject } from "react";
 import DoneRound from "../../assets/Done_round.svg";
 import Trash from "../../assets/Trash.svg";
 import CloseLingDuotone1 from "../../assets/close_ring_duotone-1.svg";
-import { semiboldTypography, themeClass } from "../../theme.css.ts";
+import { semiboldTypography, themeClass, vars } from "../../theme.css.ts";
 import type { Icon } from "../../types/icon.ts";
 import type { Status } from "../../types/status.ts";
 import { Button } from "../Button";
@@ -12,11 +13,14 @@ import {
 	dialogContainer,
 	dialogFooter,
 	dialogHeader,
-	formList,
+	iconWrapper,
 	input,
 	label,
-	textarea,
+	selectIconButton,
+	selectedColor,
+	textarea, iconList, statusList, statusListItem, selectStatusButton,
 } from "./index.css.ts";
+import {TaskStatusImage} from "../TaskStatusImage";
 
 type Props = {
 	dialogRef: RefObject<HTMLDialogElement>;
@@ -57,17 +61,34 @@ export const NewTaskFormDialog: FC<Props> = ({
 				</label>
 				<div className={label}>
 					Icon
-					<ul className={formList}>
+					<ul className={iconList}>
 						{icons?.map((icon) => (
-							<li key={icon.publicId}>{icon.emoji}</li>
+							<li
+								key={icon.publicId}
+								className={iconWrapper}
+								style={assignInlineVars({
+									[selectedColor]: vars.backgroundColor.iconDefault,
+								})}
+							>
+								<button type="button" className={selectIconButton}>
+									<span className={`${themeClass} ${semiboldTypography}`}>
+										{icon.emoji}
+									</span>
+								</button>
+							</li>
 						))}
 					</ul>
 				</div>
 				<div className={label}>
 					Status
-					<ul className={formList}>
+					<ul className={statusList}>
 						{status?.map((s) => (
-							<li key={s.publicId}>{s.name}</li>
+							<li key={s.publicId} className={statusListItem}>
+								<button type='button' className={selectStatusButton}>
+
+								<TaskStatusImage status={s.name} />{s.name}
+								</button>
+							</li>
 						))}
 					</ul>
 				</div>

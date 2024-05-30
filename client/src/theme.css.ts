@@ -30,6 +30,8 @@ export const [themeClass, vars] = createTheme({
 		wontDoStatus: "#dd524c",
 		primary: "#3662e3",
 		cancel: "#97A3B6",
+		iconDefault: "#e3e8ef",
+		iconSelected: "#f5d565",
 	},
 	color: {
 		white: "#f8fafc",
