@@ -10,20 +10,20 @@ import Logo from "./assets/Logo.svg";
 import { NewTaskFormDialog } from "./components/NewTaskFormDialog";
 import { TaskList } from "./components/TaskList";
 import { useTaskOptionsQuery, useTasksQuery } from "./features/query.ts";
+import { useDialog } from "./hooks/useDialog.tsx";
 import {
 	lightTypography,
 	regularTypography,
 	semiboldButtonTypography,
 	themeClass,
 } from "./theme.css.ts";
-import {useDialog} from "./hooks/useDialog.tsx";
 
 function App() {
 	const { data: tasks, isLoading: isTaskLoading } = useTasksQuery();
 
 	const { icons, status } = useTaskOptionsQuery();
 
-	const {dialogRef, showModal, closeModal} = useDialog()
+	const { dialogRef, showModal, closeModal } = useDialog();
 
 	return (
 		<div className={container}>
