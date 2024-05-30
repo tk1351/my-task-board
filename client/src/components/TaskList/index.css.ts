@@ -1,16 +1,18 @@
-import { style } from "@vanilla-extract/css";
+import { createVar, style } from "@vanilla-extract/css";
 
 export const list = style({
 	listStyle: "none",
-	margin: 0,
+	margin: "20px 0",
 	padding: 0,
 	display: "flex",
 	flexDirection: "column",
 	gap: "20px",
 });
 
+export const statusColor = createVar();
+
 export const listItem = style({
-	backgroundColor: "lightblue",
+	backgroundColor: statusColor,
 	borderRadius: "10px",
 	minHeight: "70px",
 	padding: "20px",
@@ -28,15 +30,6 @@ export const iconWrapper = style({
 	width: "40px",
 	height: "40px",
 	backgroundColor: "white",
-	borderRadius: "5px",
-	display: "grid",
-	placeContent: "center",
-});
-
-export const statusWrapper = style({
-	width: "40px",
-	height: "40px",
-	backgroundColor: "lightgreen",
 	borderRadius: "5px",
 	display: "grid",
 	placeContent: "center",

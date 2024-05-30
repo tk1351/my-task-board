@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import {
+	addTaskButton,
 	container,
 	mainWrapper,
 	titleDescription,
@@ -7,19 +7,24 @@ import {
 } from "./App.css.ts";
 import EditDuotone from "./assets/Edit_duotone.svg";
 import Logo from "./assets/Logo.svg";
+import { NewTaskFormDialog } from "./components/NewTaskFormDialog";
 import { TaskList } from "./components/TaskList";
-import { getTasks } from "./features/api.ts";
-import { lightTypography, regularTypography, themeClass } from "./theme.css.ts";
-import type { Task } from "./types/task.ts";
+import { useTaskOptionsQuery, useTasksQuery } from "./features/query.ts";
+import {
+	lightTypography,
+	regularTypography,
+	semiboldButtonTypography,
+	themeClass,
+} from "./theme.css.ts";
+import {useDialog} from "./hooks/useDialog.tsx";
 
 function App() {
-	const [tasks, setTasks] = useState<Task[] | null>(null);
-	useEffect(() => {
-		(async () => {
-			const response = await getTasks();
-			setTasks(response);
-		})();
-	}, []);
+	const { data: tasks, isLoading: isTaskLoading } = useTasksQuery();
+
+	const { icons, status } = useTaskOptionsQuery();
+
+	const {dialogRef, showModal, closeModal} = useDialog()
+
 	return (
 		<div className={container}>
 			<main className={mainWrapper}>
@@ -33,8 +38,23 @@ function App() {
 				<p className={`${themeClass} ${lightTypography} ${titleDescription}`}>
 					Tasks to keep organised
 				</p>
-				{!tasks && <div>No Task</div>}
+				{isTaskLoading && <div>Loading...</div>}
 				{tasks && <TaskList tasks={tasks} />}
+				<button
+					className={`${addTaskButton} ${semiboldButtonTypography}`}
+					type="button"
+					onClick={showModal}
+				>
+					Add new task
+				</button>
+				{icons && status && (
+					<NewTaskFormDialog
+						dialogRef={dialogRef}
+						onClickCloseButton={closeModal}
+						status={status}
+						icons={icons}
+					/>
+				)}
 			</main>
 		</div>
 	);

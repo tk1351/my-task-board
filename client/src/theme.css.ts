@@ -21,6 +21,20 @@ export const [themeClass, vars] = createTheme({
 		regular: "400",
 		light: "300",
 	},
+	backgroundColor: {
+		progress: "#f5d565",
+		progressStatus: "#e9a23b",
+		completed: "#a0ecb1",
+		completedStatus: "#32d657",
+		wontDo: "#f7d4d3",
+		wontDoStatus: "#dd524c",
+		primary: "#3662e3",
+		cancel: "#97A3B6",
+	},
+	color: {
+		white: "#f8fafc",
+		darkGray: "#97A3B6",
+	},
 });
 
 export const regularTypography = style({
