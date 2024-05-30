@@ -17,26 +17,34 @@ export const [themeClass, vars] = createTheme({
 		medium: "0.875",
 		"medium-label": "0.75",
 	},
+	fontWeight: {
+		regular: "400",
+		light: "300",
+	},
 });
 
 export const regularTypography = style({
 	fontSize: vars.fontSize.regular,
 	lineHeight: vars.lineHeight.regular,
+	fontWeight: vars.fontWeight.regular,
 });
 
 export const lightTypography = style({
 	fontSize: vars.fontSize.light,
 	lineHeight: vars.lineHeight.light,
+	fontWeight: vars.fontWeight.light,
 });
 
 export const semiboldTypography = style({
 	fontSize: vars.fontSize.semibold,
 	lineHeight: vars.lineHeight.semibold,
+	fontWeight: vars.fontWeight.regular,
 });
 
 export const mediumTypography = style({
 	fontSize: vars.fontSize.medium,
 	lineHeight: vars.lineHeight.medium,
+	fontWeight: vars.fontWeight.regular,
 });
 
 export const semiboldButtonTypography = style({
@@ -47,4 +55,5 @@ export const semiboldButtonTypography = style({
 export const mediumLabelTypography = style({
 	fontSize: vars.fontSize["medium-label"],
 	lineHeight: vars.lineHeight["medium-label"],
+	fontWeight: vars.fontWeight.light,
 });
