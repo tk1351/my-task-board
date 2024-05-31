@@ -1,19 +1,19 @@
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 
 export const useDialog = () => {
 	const dialogRef = useRef<HTMLDialogElement>(null);
 
-	const showModal = () => {
+	const showModal = useCallback(() => {
 		if (dialogRef.current) {
 			dialogRef.current.showModal();
 		}
-	};
+	}, []);
 
-	const closeModal = () => {
+	const closeModal = useCallback(() => {
 		if (dialogRef.current) {
 			dialogRef.current.close();
 		}
-	};
+	}, []);
 
 	return { dialogRef, showModal, closeModal };
 };

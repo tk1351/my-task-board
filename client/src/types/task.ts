@@ -13,3 +13,8 @@ export type Task = {
 	icon: Icon;
 	status: Status;
 };
+
+export type CreateTaskFormData = Pick<
+	Task,
+	"name" | "description" | "iconId" | "statusId"
+>;

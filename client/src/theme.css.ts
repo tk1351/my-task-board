@@ -36,6 +36,7 @@ export const [themeClass, vars] = createTheme({
 	color: {
 		white: "#f8fafc",
 		darkGray: "#97A3B6",
+		primary: "#3662e3",
 	},
 });
 

@@ -50,7 +50,7 @@ function App() {
 				{icons && status && (
 					<NewTaskFormDialog
 						dialogRef={dialogRef}
-						onClickCloseButton={closeModal}
+						closeModal={closeModal}
 						status={status}
 						icons={icons}
 					/>
